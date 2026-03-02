@@ -1,0 +1,129 @@
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(135deg, #141e30, #243b55);
+  height: 100vh;
+}
+
+/* Main layout */
+.app {
+  text-align: center;
+  color: white;
+  padding-top: 25px;
+}
+
+h1 {
+  margin-bottom: 15px;
+}
+
+/* Chat box */
+.chat-box {
+  width: 420px;
+  height: 480px;
+  margin: auto;
+  padding: 20px;
+  overflow-y: auto;
+
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(18px);
+
+  border-radius: 20px;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.4);
+}
+
+/* Chat rows */
+.chat-row {
+  display: flex;
+  align-items: flex-end;
+  margin: 12px 0;
+}
+
+.chat-row.user {
+  justify-content: flex-end;
+}
+
+.chat-row.bot {
+  justify-content: flex-start;
+}
+
+/* Avatar */
+.avatar {
+  font-size: 22px;
+  margin: 0 8px;
+}
+
+/* Message bubbles */
+.message {
+  padding: 10px 15px;
+  border-radius: 15px;
+  max-width: 70%;
+  animation: fadeIn 0.3s ease;
+}
+
+.user .message {
+  background: #00c6ff;
+  color: white;
+}
+
+.bot .message {
+  background: white;
+  color: black;
+}
+
+/* Typing animation */
+.typing {
+  background: white;
+  color: black;
+  padding: 10px 15px;
+  border-radius: 15px;
+  font-style: italic;
+  animation: blink 1s infinite;
+}
+
+/* Input */
+.input-area {
+  margin-top: 15px;
+}
+
+input {
+  padding: 10px;
+  width: 250px;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+}
+
+/* Button */
+button {
+  padding: 10px 18px;
+  margin-left: 10px;
+  border: none;
+  border-radius: 8px;
+  background: #00ffb3;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  transform: scale(1.05);
+  background: #00cc8f;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0.5;
+  }
+}
