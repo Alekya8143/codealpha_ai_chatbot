@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/codealpha_ai_chatbot/static/css/main.6ac60369.css",
+    "main.js": "/codealpha_ai_chatbot/static/js/main.38480eed.js",
+    "static/js/453.c09d5a4e.chunk.js": "/codealpha_ai_chatbot/static/js/453.c09d5a4e.chunk.js",
+    "index.html": "/codealpha_ai_chatbot/index.html",
+    "main.6ac60369.css.map": "/codealpha_ai_chatbot/static/css/main.6ac60369.css.map",
+    "main.38480eed.js.map": "/codealpha_ai_chatbot/static/js/main.38480eed.js.map",
+    "453.c09d5a4e.chunk.js.map": "/codealpha_ai_chatbot/static/js/453.c09d5a4e.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.6ac60369.css",
+    "static/js/main.38480eed.js"
+  ]
+}
