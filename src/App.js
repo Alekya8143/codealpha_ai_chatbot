@@ -1,53 +1,53 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState } from "react";
 import "./App.css";
 
 function App() {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
-  const [typing, setTyping] = useState(false);
 
-  const chatEndRef = useRef(null);
+  // Intelligent response generator
+  const getBotResponse = (message) => {
+    const text = message.toLowerCase();
 
-  // Auto scroll
-  useEffect(() => {
-    chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages, typing]);
+    if (text.includes("machine learning"))
+      return "Machine Learning is a branch of AI that allows computers to learn patterns from data without explicit programming.";
 
-  const getBotReply = (msg) => {
-    msg = msg.toLowerCase();
+    if (text.includes("artificial intelligence") || text.includes("ai"))
+      return "Artificial Intelligence enables machines to simulate human intelligence like learning and decision making.";
 
-    if (msg.includes("hello")) return "Hello 👋 I'm your AI assistant!";
-    if (msg.includes("react")) return "React makes UI development fast 🚀";
-    if (msg.includes("ai")) return "AI helps machines think like humans 🤖";
-    if (msg.includes("bye")) return "Goodbye! Have an amazing day 🌟";
+    if (text.includes("global warming"))
+      return "Global warming refers to the rise in Earth's temperature caused by greenhouse gases.";
 
-    return "Interesting 🤔 Tell me more!";
+    if (text.includes("rbi"))
+      return "RBI stands for Reserve Bank of India, which regulates India's banking and financial system.";
+
+    if (text.includes("react"))
+      return "React is a JavaScript library used to build fast and interactive user interfaces.";
+
+    if (text.includes("hello") || text.includes("hi"))
+      return "Hello 👋! Ask me anything about technology or general topics.";
+
+    if (text.includes("who are you"))
+      return "I am an AI Chatbot developed using React for the CodeAlpha Internship.";
+
+    if (text.includes("bye"))
+      return "Goodbye 👋! Have a great day.";
+
+    // default smart reply
+    return "That's an interesting question! I'm continuously learning. Try asking about AI, React, technology, or general knowledge.";
   };
 
   const sendMessage = () => {
     if (!input.trim()) return;
 
     const userMessage = { text: input, sender: "user" };
-    setMessages((prev) => [...prev, userMessage]);
+    const botReply = {
+      text: getBotResponse(input),
+      sender: "bot",
+    };
+
+    setMessages([...messages, userMessage, botReply]);
     setInput("");
-
-    // typing animation
-    setTyping(true);
-
-    setTimeout(() => {
-      const botReply = {
-        text: getBotReply(input),
-        sender: "bot",
-      };
-
-      setMessages((prev) => [...prev, botReply]);
-      setTyping(false);
-    }, 1200);
-  };
-
-  // Enter key send
-  const handleKeyPress = (e) => {
-    if (e.key === "Enter") sendMessage();
   };
 
   return (
@@ -56,34 +56,19 @@ function App() {
 
       <div className="chat-box">
         {messages.map((msg, index) => (
-          <div key={index} className={`chat-row ${msg.sender}`}>
-            <div className="avatar">
-              {msg.sender === "bot" ? "🤖" : "👤"}
-            </div>
-
-            <div className={`message ${msg.sender}`}>
-              {msg.text}
-            </div>
+          <div key={index} className={msg.sender}>
+            {msg.text}
           </div>
         ))}
-
-        {typing && (
-          <div className="chat-row bot">
-            <div className="avatar">🤖</div>
-            <div className="typing">AI is typing...</div>
-          </div>
-        )}
-
-        <div ref={chatEndRef}></div>
       </div>
 
       <div className="input-area">
         <input
           type="text"
-          placeholder="Ask something..."
+          placeholder="Ask anything..."
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          onKeyDown={handleKeyPress}
+          onKeyDown={(e) => e.key === "Enter" && sendMessage()}
         />
 
         <button onClick={sendMessage}>Send</button>
